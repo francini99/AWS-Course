@@ -1,0 +1,13 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Sensitive files
+*.pem
+*.key
+
+# Terraform lock (optional to keep)
+.terraform.lock.hcl
+../Lab1-EC2-VPC-backup/
