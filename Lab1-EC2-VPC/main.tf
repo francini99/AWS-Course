@@ -95,10 +95,15 @@ resource "aws_security_group" "allow_ssh" {
   }
 }
 
+resource "aws_key_pair" "testkey" {
+  key_name   = "testkey"
+  public_key = file("testkey.pub")
+}
+
 resource "aws_instance" "ubuntu2004" {
   ami                         = "ami-0e067cc8a2b58de59" # Ubuntu 20.04 eu-central-1 Frankfurt
   instance_type               = "t2.nano"
-  key_name                    = "testkey"
+  key_name                    = "aws_key_pair.testkey.key_name"
   vpc_security_group_ids      = [aws_security_group.allow_ssh.id]
   subnet_id                   = aws_subnet.public.id
   associate_public_ip_address = true
@@ -115,10 +120,20 @@ resource "aws_instance" "ubuntu2004" {
   }
 }
 
+data "aws_ami" "windows" {
+  most_recent = true
+  owners      = ["801119661308"]
+
+  filter {
+    name   = "name"
+    values = ["Windows_Server-2019-English-Full-Base-*"]
+  }
+}
+
 resource "aws_instance" "win2019" {
-	ami                         = "ami-02c2da541ae36c6fc" # Windows 2019 Server eu-central-1 Frankfurt
+	ami                         = "data.aws_ami.windows.id" # Windows 2019 Server eu-central-1 Frankfurt
 	instance_type               = "t2.micro"
-        key_name                    = "testkey"
+        key_name                    = "aws_key_pair.testkey.key_name"
         vpc_security_group_ids      = [aws_security_group.allow_ssh.id]
         subnet_id                   = aws_subnet.public.id  
 	associate_public_ip_address = true
