@@ -100,7 +100,7 @@ resource "aws_key_pair" "testkey" {
   public_key = file("testkey.pub")
 }
 
-resource "aws_instance" "Ubuntu2204" {
+resource "aws_instance" "ubuntu2204" {
   ami                         = "ami-051e483428ae60e7d" #Microsoft SQL Server 2022 Standard edition on Ubuntu Server 22.04 LTS.
   instance_type               = "t3.micro"
   key_name                    = aws_key_pair.testkey.key_name
@@ -121,7 +121,7 @@ resource "aws_instance" "Ubuntu2204" {
 }
 
 resource "aws_instance" "win2025" {
-	ami                         = ami-01a15dfc48279bf55 # Microsoft Windows 2025 Datacenter edition
+	ami                         = "ami-01a15dfc48279bf55" # Microsoft Windows 2025 Datacenter edition
 	instance_type               = "t3.micro"
         key_name                    = aws_key_pair.testkey.key_name
         vpc_security_group_ids      = [aws_security_group.allow_ssh.id]
