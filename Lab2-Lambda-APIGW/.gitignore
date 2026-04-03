@@ -7,8 +7,9 @@ crash.log
 # Sensitive files
 *.pem
 *.key
-*.py
 *.zip
 
 # Terraform lock (optional to keep)
 .terraform.lock.hcl
+*.zip
+.terraform/
