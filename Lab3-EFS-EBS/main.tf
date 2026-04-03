@@ -101,6 +101,13 @@ resource "aws_security_group" "sg_config" {
   }
 }
 
+
+#AWS key config
+resource "aws_key_pair" "testkey" {
+  key_name   = "testkey"
+  public_key = file("testkey.pub")
+}
+
 #Instance1 config - ubuntu2204
 resource "aws_instance" "ubuntu2204" {
   ami                         = "ami-0ec10929233384c7f" #Ubuntu Server 24.04 LTS (HVM),EBS General Purpose (SSD) Volume Type.
