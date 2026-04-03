@@ -1,7 +1,7 @@
 # Creating EBS for Ubuntu
 # details: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ebs_volume
 resource "aws_ebs_volume" "ebs_ubuntu" {
-  availability_zone = "us-east-1"
+  availability_zone = "us-east-1a"
   size = 20   # The size of the drive in GiBs.
   type= "gp2" # default gp2. others: standard, gp2, gp3, io1, io2, sc1 or st1
 }
@@ -16,7 +16,7 @@ resource "aws_volume_attachment" "ubuntu2204_ebs_ubuntu" {
 # Creating EBS for Windows
 # details: https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/ebs_volume
 resource "aws_ebs_volume" "ebs_windows" {
-  availability_zone = "us-east-1"
+  availability_zone = "us-east-1a"
   size = 15   # The size of the drive in GiBs.
   type= "gp2" # default gp2. others: standard, gp2, gp3, io1, io2, sc1 or st1
 }
