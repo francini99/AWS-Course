@@ -102,7 +102,7 @@ resource "aws_key_pair" "testkey" {
 
 resource "aws_instance" "ubuntu2004" {
   ami                         = "ami-0e067cc8a2b58de59" # Ubuntu 20.04 eu-central-1 Frankfurt
-  instance_type               = "t2.nano"
+  instance_type               = "t2.micro"
   key_name                    = aws_key_pair.testkey.key_name
   vpc_security_group_ids      = [aws_security_group.allow_ssh.id]
   subnet_id                   = aws_subnet.public.id
@@ -133,7 +133,7 @@ data "aws_ami" "windows" {
 resource "aws_instance" "win2019" {
 	ami                         = data.aws_ami.windows.id # Windows 2019 Server eu-central-1 Frankfurt
 	instance_type               = "t2.micro"
-        key_name                    = "aws_key_pair.testkey.key_name"
+        key_name                    = aws_key_pair.testkey.key_name
         vpc_security_group_ids      = [aws_security_group.allow_ssh.id]
         subnet_id                   = aws_subnet.public.id  
 	associate_public_ip_address = true
