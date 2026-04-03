@@ -102,7 +102,7 @@ resource "aws_key_pair" "testkey" {
 
 resource "aws_instance" "ubuntu2204" {
   ami                         = "ami-051e483428ae60e7d" #Microsoft SQL Server 2022 Standard edition on Ubuntu Server 22.04 LTS.
-  instance_type               = "t3.micro"
+  instance_type               = "t3.small"
   key_name                    = aws_key_pair.testkey.key_name
   vpc_security_group_ids      = [aws_security_group.allow_ssh.id]
   subnet_id                   = aws_subnet.public.id
