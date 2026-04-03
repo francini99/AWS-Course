@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "aws" {
-	region = "eu-central-1"
+	region = "us-east-1"
 }
 
 resource "aws_vpc" "my_vpc" {
@@ -24,7 +24,7 @@ resource "aws_vpc" "my_vpc" {
 resource "aws_subnet" "public" {
   vpc_id            = aws_vpc.my_vpc.id
   cidr_block        = "10.0.0.0/24"
-  availability_zone = "eu-central-1c"
+  availability_zone = "eu-east-1"
   tags = {
     Name = "Public Subnet"
   }
