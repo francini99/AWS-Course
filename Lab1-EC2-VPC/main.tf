@@ -100,9 +100,9 @@ resource "aws_key_pair" "testkey" {
   public_key = file("testkey.pub")
 }
 
-resource "aws_instance" "ubuntu2004" {
-  ami                         = "ami-0e067cc8a2b58de59" # Ubuntu 20.04 eu-central-1 Frankfurt
-  instance_type               = "t2.micro"
+resource "aws_instance" "Ubuntu2204" {
+  ami                         = "ami-051e483428ae60e7d" #Microsoft SQL Server 2022 Standard edition on Ubuntu Server 22.04 LTS.
+  instance_type               = "t3.micro"
   key_name                    = aws_key_pair.testkey.key_name
   vpc_security_group_ids      = [aws_security_group.allow_ssh.id]
   subnet_id                   = aws_subnet.public.id
@@ -116,36 +116,26 @@ resource "aws_instance" "ubuntu2004" {
 		           echo "<h1>Deployed via Terraform from $(hostname -f)</h1>" | sudo tee /var/www/html/index.html
   EOF
   tags = {
-    Name = "Ubuntu 20.04"
+    Name = "Ubuntu 22.04"
   }
 }
 
-data "aws_ami" "windows" {
-  most_recent = true
-  owners      = ["801119661308"]
-
-  filter {
-    name   = "name"
-    values = ["Windows_Server-2019-English-Full-Base-*"]
-  }
-}
-
-resource "aws_instance" "win2019" {
-	ami                         = data.aws_ami.windows.id # Windows 2019 Server eu-central-1 Frankfurt
-	instance_type               = "t2.micro"
+resource "aws_instance" "win2025" {
+	ami                         = ami-01a15dfc48279bf55 # Microsoft Windows 2025 Datacenter edition
+	instance_type               = "t3.micro"
         key_name                    = aws_key_pair.testkey.key_name
         vpc_security_group_ids      = [aws_security_group.allow_ssh.id]
         subnet_id                   = aws_subnet.public.id  
 	associate_public_ip_address = true
         tags = {
-		Name = "Win 2019 Server"
+		Name = "Win 2025 Server"
 	}
 }
 
-output "instance_ubuntu2004_public_ip" {
-  value = "${aws_instance.ubuntu2004.public_ip}"
+output "instance_ubuntu2204_public_ip" {
+  value = "${aws_instance.ubuntu2204.public_ip}"
 }
 
-output "instance_win2019_public_ip" {
-  value = "${aws_instance.win2019.public_ip}"
+output "instance_win2025_public_ip" {
+  value = "${aws_instance.win2025.public_ip}"
 }
