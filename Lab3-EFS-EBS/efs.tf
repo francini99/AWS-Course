@@ -61,7 +61,7 @@ resource "null_resource" "configure_nfs" {
     type     = "ssh"
     user     = "ubuntu"
     private_key = file("testkey.pem")
-    host     = aws_instance.ubuntu2044.public_ip
+    host     = aws_instance.ubuntu2204.public_ip
   }
 
   provisioner "remote-exec" {
