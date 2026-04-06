@@ -8,10 +8,6 @@ terraform {
   required_version = ">= 1.2.0"
 }
 
-provider "aws" {
-  region = "us-east-1"
-}
-
 # Creating Elastic Container Repository for application
 resource "aws_ecr_repository" "flask_app" {
   name = "flask-app"
