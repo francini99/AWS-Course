@@ -32,7 +32,7 @@ resource "aws_subnet" "public_subnet_a" {
 }
 
 resource "aws_subnet" "public_subnet_b" {
-  availability_zone = "us-east-2a"
+  availability_zone = "us-east-2b"
   vpc_id            = aws_vpc.my_vpc.id
   cidr_block        = "10.0.1.0/24"
   tags = {
@@ -41,7 +41,7 @@ resource "aws_subnet" "public_subnet_b" {
 }
 
 resource "aws_subnet" "public_subnet_c" {
-  availability_zone = "us-east-2a"
+  availability_zone = "us-east-2c"
   vpc_id            = aws_vpc.my_vpc.id
   cidr_block        = "10.0.2.0/24"
   tags = {
