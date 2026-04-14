@@ -52,7 +52,7 @@ resource "aws_api_gateway_deployment" "example" {
      aws_api_gateway_integration.lambda_root,
    ]
    rest_api_id = aws_api_gateway_rest_api.example.id
-   stage_name  = "test"
+   aws_api_gateway_stage  = "test"
 }
 
 # Output to the URL 

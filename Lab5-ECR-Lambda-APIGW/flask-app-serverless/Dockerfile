@@ -1,4 +1,4 @@
-FROM public.ecr.aws/lambda/python:3.7
+FROM public.ecr.aws/lambda/python:3.10
 
 WORKDIR ${LAMBDA_TASK_ROOT}
 
