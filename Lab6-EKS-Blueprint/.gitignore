@@ -1,0 +1,15 @@
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+crash.log
+
+# Sensitive files
+*.pem
+*.key
+*.zip
+
+# Terraform lock (optional to keep)
+.terraform.lock.hcl
+*.zip
+.terraform/
